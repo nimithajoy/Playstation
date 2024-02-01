@@ -7,6 +7,7 @@ export class LoginPage {
     readonly emailAddressSignInLocator: Locator;
     readonly passwordTextBoxLocator: Locator;
     readonly passwordSignInLocator: Locator;
+    readonly userNameLocator: Locator;
  
     constructor(page: Page) {
         this.page = page
@@ -14,6 +15,7 @@ export class LoginPage {
         this.emailAddressSignInLocator = this.page.locator('#signInSubmit')
         this.passwordTextBoxLocator = this.page.getByPlaceholder('Password')
         this.passwordSignInLocator = this.page.locator('#signin-password-button')
+        this.userNameLocator = this.page.locator('#signin-password-button')
        
     }
 
@@ -22,7 +24,7 @@ export class LoginPage {
         await this.emailAddressSignInLocator.click();
        // await this.passwordTextBoxLocator.fill(password)
       //  await this.passwordSignInLocator.click();
-     // await expect(this.page.getByText(username)).toBeVisible();
+     // await expect(this.userNameLocator).toBeVisible();
     }
 
 }

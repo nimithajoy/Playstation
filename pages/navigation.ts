@@ -1,17 +1,17 @@
 import { Locator, Page, expect } from "@playwright/test"
-import {CommonUtils} from "../utils/common-utils"
+import { CommonUtils } from "../utils/common-utils"
 import { Context } from "vm";
 
 export class NavigationPage {
 
-    readonly context : Context
+    readonly context: Context
     readonly page: Page
     readonly cookieRejectButtonLocator: Locator;
     readonly mySonyButtonLocator: Locator;
     readonly loginIconLocator: Locator;
     readonly mainMenuIconLocator: Locator;
     readonly playStationTextLocator: Locator;
-    constructor(page: Page , context: Context) {
+    constructor(page: Page, context: Context) {
         this.context = context
         this.page = page
         this.cookieRejectButtonLocator = this.page.getByRole('button', { name: 'Reject All' });
@@ -29,10 +29,10 @@ export class NavigationPage {
         await this.loginIconLocator.click()
     }
 
-    async goToPlayStationPage(){
+    async goToPlayStationPage() {
         await this.mainMenuIconLocator.click();
         const utils = new CommonUtils(this.page)
-        const newPage= await utils.switchToNewTab(this.context,this.playStationTextLocator)
+        const newPage = await utils.switchToNewTab(this.context, this.playStationTextLocator)
         await expect(newPage).toHaveTitle(/PlayStation/);
         return newPage;
     }

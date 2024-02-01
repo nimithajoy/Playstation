@@ -10,7 +10,7 @@ export class ImageCarousel {
     readonly titleBlockLocator: Locator
     readonly headingLocator: Locator
     readonly sliderControlImageLocator: Locator
- 
+
     constructor(page: Page) {
         this.page = page;
         this.carouselSlidesLocator = this.page.locator('xpath=//div[@class="homepage-hero-wrapper"]//div[@class="slider__slides"]/div[contains(@class, "slider__slide")]');
@@ -19,8 +19,8 @@ export class ImageCarousel {
         this.titleBlockLocator = this.page.locator('xpath=//div[@class="homepage-hero-wrapper"]//div[@class="slider__slides"]/div[contains(@class, "slider__slide")]//div[contains(@class,"title-block")]')
         this.headingLocator = this.page.locator('xpath=//div[@class="homepage-hero-wrapper"]//div[@class="slider__slides"]/div[contains(@class, "slider__slide")]//a[@aria-label="PAGE_BANNER_ARIA_LABEL"]')
         this.sliderControlImageLocator = this.page.locator('xpath=//div[contains(@class,"slider__controls carousel")]//div[@role="button"]//picture//source');
-       
-    
+
+
 
     }
 
