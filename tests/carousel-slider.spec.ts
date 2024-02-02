@@ -2,15 +2,27 @@ import { Page } from "@playwright/test"
 import { test } from "../pages/basePage"
 import * as userData from "../testdata.json";
 import { ImageCarousel } from "../pages/image-carousel";
+import { STORAGE_STATE } from "../playwright.config";
+import { NavigationPage } from "../pages/navigation";
+import { LoginPage } from "../pages/login";
+
+
+test.beforeAll('Login to Sony Website', async ({ browser }) => {
+    const context = await browser.newContext();
+    const page = await context.newPage();
+    const navigationPage = new NavigationPage(page, context);
+    await navigationPage.goToLoginPage();
+    // const loginPage = new LoginPage(page);
+    // await loginPage.login(userData.DefaultUser.emailAddress, userData.DefaultUser.password);
+    await page.context().storageState({ path: STORAGE_STATE });
+});
 
 
 test.describe('Verify image carousel functionalities', () => {
     let newPage: Page;
     let imageCarouselPage: ImageCarousel;
 
-    test.beforeEach('Navigate to PlayStation website', async ({ navigationPage, loginPage, baseURL }) => {
-        await navigationPage.goToLoginPage(baseURL);
-        // await loginPage.login(userData.DefaultUser.emailAddress, userData.DefaultUser.password, userData.DefaultUser.userName);
+    test.beforeEach('Navigate to PlayStation website', async ({ navigationPage }) => {
         newPage = await navigationPage.goToPlayStationPage();
         imageCarouselPage = new ImageCarousel(newPage);
 

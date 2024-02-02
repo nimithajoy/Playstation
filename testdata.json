@@ -1,7 +1,6 @@
 {
     "DefaultUser": {
         "emailAddress": "xxx@gmail.com",
-        "password": "Password@12",
-        "userName": "userName"
+        "password": "Password@12"
     }
 }

@@ -21,15 +21,18 @@ export class NavigationPage {
         this.playStationTextLocator = this.page.getByRole('link', { name: 'PlayStation' })
     }
 
-    async goToLoginPage(baseURL) {
-        await this.page.goto(baseURL);
-        await this.cookieRejectButtonLocator.click();
+    async goToLoginPage() {
+        await this.page.goto('/');
+        if(await this.cookieRejectButtonLocator.isVisible()){
+            await this.cookieRejectButtonLocator.click();
+        }
         await expect(this.page).toHaveTitle(/Sony UK/);
         await this.mySonyButtonLocator.click();
         await this.loginIconLocator.click()
     }
 
     async goToPlayStationPage() {
+        await this.page.goto('/');
         await this.mainMenuIconLocator.click();
         const utils = new CommonUtils(this.page)
         const newPage = await utils.switchToNewTab(this.context, this.playStationTextLocator)
